@@ -1,5 +1,5 @@
 const Task = require("../models/Task");
-const { all } = require("../models/routes/authRoutes");
+const { all } = require("../routes/authRoutes");
 
 // @desc Get all task (Admin : all, User: only assigned tasks)
 // @route GET /api/tasks/
