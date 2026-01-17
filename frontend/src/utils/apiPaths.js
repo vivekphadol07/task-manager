@@ -1,4 +1,4 @@
-export const BASE_URL = "https://task-manager-kohl-chi.vercel.app";
+export const BASE_URL = "https://task-manager-kohl-chi.vercel.app/";
 
 // utils/apiPaths.js
 
