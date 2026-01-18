@@ -7,12 +7,12 @@ const connectDB = async () => {
 
   try {
     const conn = await mongoose.connect(process.env.MONGO_URI);
-    isConnected = conn.connections[0].readyState;
+    isConnected = conn.connection.readyState;
     console.log("MongoDB Connected");
   } catch (err) {
-    console.error("MongoDB error:", err.message);
-    throw err;
-  }
+    console.error("MongoDB connection error:", err.message);
+    process.exit(1);
+  };
 };
 
 module.exports = connectDB;

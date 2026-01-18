@@ -72,33 +72,33 @@ const registerUser = async (req, res) => {
 // @route   POST /api/auth/login
 // @access  Public
 const loginUser = async (req, res) => {
-    try {
-        const {email, password} = req.body;
+  try {
+    const email = req.body.email.toLowerCase();
+    const password = req.body.password;
 
-        const user = await User.findOne({email});
-        if(!user) {
-            return res.status(401).json({message: "Invalid email or password"});
-        }
-
-        //compare password
-        const isMatch = await bcrypt.compare(password, user.password);
-        if(!isMatch) {
-            return res.status(401).json({message: "Invalid email or password"});
-        }
-
-        // return user data with JWT
-        res.json({
-            _id : user._id,
-            name : user.name,
-            email: user.email,
-            role : user.role,
-            profileImageUrl : user.profileImageUrl,
-            token: generateToken(user._id),
-        });
-    } catch (error) {
-        res.status(500).json({ message: "Server error", error: error.message });
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(401).json({ message: "Invalid email or password" });
     }
+
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return res.status(401).json({ message: "Invalid email or password" });
+    }
+
+    res.json({
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+      role: user.role,
+      profileImageUrl: user.profileImageUrl,
+      token: generateToken(user._id),
+    });
+  } catch (error) {
+    res.status(500).json({ message: "Server error" });
+  }
 };
+
 
 // @desc    Get user profile
 // @route   GET /api/auth/profile
