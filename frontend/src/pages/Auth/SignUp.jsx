@@ -105,7 +105,7 @@ const SignUp = () => {
               onChange={({ target }) => setEmail(target.value)}
               label="Email Address"
               placeholder="xyz@example.com"
-              type="text"
+              type="email"
             />
 
             <Input
