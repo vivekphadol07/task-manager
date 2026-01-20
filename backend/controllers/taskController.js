@@ -233,7 +233,7 @@ const updateTaskStatus = async (req, res) => {
         const isAssigned =
             Array.isArray(task.assignedTo) &&
             task.assignedTo.some(
-                (userId) => userId.toString() === req.user._id.toString()
+                (userId) => userId.toString() === req.user.id.toString()
             );
 
         if (!isAssigned && req.user.role !== "admin") {
@@ -291,7 +291,7 @@ const updateTaskChecklist = async (req, res) => {
         const isAssigned =
             Array.isArray(task.assignedTo) &&
             task.assignedTo.some(
-                (userId) => userId.toString() === req.user._id.toString()
+                (userId) => userId.toString() === req.user.id.toString()
             );
 
         if (!isAssigned && req.user.role !== "admin") {
