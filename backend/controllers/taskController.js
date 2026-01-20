@@ -434,7 +434,7 @@ const getDashboardData = async (req, res) => {
 // access Private
 const getUserDashboardData = async (req, res) => {
     try {
-        const userId = req.user._id; //Only fetch data for the logged-in user
+        const userId = req.user.id; //Only fetch data for the logged-in user
 
         // Fetch statictics For user-specific tasks
         const totalTasks = await Task.countDocuments({ assignedTo: userId });
