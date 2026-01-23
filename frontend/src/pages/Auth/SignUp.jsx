@@ -20,6 +20,11 @@ const SignUp = () => {
   const { updateUser } = useContext(UserContext);
   const navigate = useNavigate();
 
+  const validatePassword = (password) => {
+    return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/.test(password);
+  };
+
+
   const handleSignUp = async (e) => {
     e.preventDefault();
 
@@ -112,8 +117,9 @@ const SignUp = () => {
               value={password}
               onChange={({ target }) => setPassword(target.value)}
               label="Password"
-              placeholder="Min 8 Characters"
+              placeholder="Min 8 characters"
               type="password"
+              error={password && !validatePassword(password)}
             />
 
             <Input
